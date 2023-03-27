@@ -80,6 +80,69 @@ public class Renderer {
         // TODO: zaimplementuj
     }
 
+    public class Vec3i {
+        public int x;
+        public int y;
+        public int z;
+
+        @Override
+        public String toString() {
+            return x + " " + y + " " + z;
+        }
+    }
+
+    public class Vec3f {
+        public float x;
+        public float y;
+        public float z;
+        @Override
+        public String toString() {
+            return x + " " + y + " " + z;
+        }
+    }
+
+    public class Vec2f {
+        public float x;
+        public float y;
+        @Override
+        public String toString() {
+            return x + " " + y;
+        }
+    }
+
+    public class Vec2i {
+        public int x;
+        public int y;
+        @Override
+        public String toString() {
+            return x + " " + y;
+        }
+    }
+
+    public Vec3f barycentric(Vec2f A, Vec2f B, Vec2f C, Vec2f P) {
+        Vec3f v1 = // tutaj potrzebujemy wektora składającego się ze współrzędnych
+                // x wektorów AB, AC ora PA.
+
+                Vec3f v2 = // tutaj potrzebujemy wektora składającego się ze współrzędnych
+                // y wektorów AB, AC ora PA.
+
+                Vec3f cross = // iloczyn wektorowy v1 i v2. Wskazówka: zaimplementuj do tego oddzielną metodę
+
+                Vec2f uv = // wektor postaci: cross.x / cross.z, cross.y / cross.z
+
+                //
+                Vec3f barycentric = // współrzędne barycentryczne, uv.x, uv.y, 1- uv.x - uv.y
+        return barycentric;
+    }
+
+    public void drawTriangle(Vec2f A, Vec2f B, Vec2f C) {
+        // dla każdego punktu obrazu this.render:
+        //      oblicz współrzędne baryc.
+        //      jeśli punkt leży wewnątrz, zamaluj (patrz wykład)
+    }
+
+
+
     public void save() throws IOException {
         File outputfile = new File(filename);
         render = Renderer.verticalFlip(render);
