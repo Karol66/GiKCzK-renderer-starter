@@ -1,10 +1,12 @@
 package CGlab;
 
 
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
 import javax.imageio.ImageIO;
 
 public class Renderer {
@@ -23,7 +25,7 @@ public class Renderer {
         this.filename = filename;
     }
 
-    public void drawPoint(int x, int y) {
+    public void drawPoint(int x, int y, Color color) {
         int white = 255 | (255 << 8) | (255 << 16) | (255 << 24);
         render.setRGB(x, y, white);
     }
@@ -94,10 +96,23 @@ public class Renderer {
         return barycentric;
     }
 
-    public void drawTriangle(Vec2f A, Vec2f B, Vec2f C) {
-        // dla każdego punktu obrazu this.render:
-        //      oblicz współrzędne baryc.
-        //      jeśli punkt leży wewnątrz, zamaluj (patrz wykład)
+
+    public void drawTriangle(Vec2f A, Vec2f B, Vec2f C, Color color) {
+        Float[] xs = {A.x, B.x, C.x};
+        Float[] ys = {A.y, B.y, C.y};
+        int minx = Math.round(Collections.min(Arrays.asList(xs)));
+        int maxx = Math.round(Collections.max(Arrays.asList(xs))+ 0.5f);
+        int miny = Math.round(Collections.min(Arrays.asList(ys)));
+        int maxy = Math.round(Collections.max(Arrays.asList(ys))+ 0.5f);
+
+        for (int i = minx; i <= maxx; i++) {
+            for (int j = miny; j <= maxy; j++) {
+                Vec2f P = new Vec2f((float) i, (float) j);
+                if ((barycentric(A, B, C, P).x > 0 && barycentric(A, B, C, P).x < 1 && barycentric(A, B, C, P).y < 1 && barycentric(A, B, C, P).y > 0 && barycentric(A, B, C, P).z > 0 && barycentric(A, B, C, P).z < 1)) {
+                    drawPoint(i, j, color);
+                }
+            }
+        }
     }
 
     public Vec3f vectorProduct(Vec3f v1, Vec3f v2) {
