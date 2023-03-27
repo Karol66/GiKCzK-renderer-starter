@@ -91,34 +91,6 @@ public class Renderer {
         }
     }
 
-    public class Vec3f {
-        public float x;
-        public float y;
-        public float z;
-        @Override
-        public String toString() {
-            return x + " " + y + " " + z;
-        }
-    }
-
-    public class Vec2f {
-        public float x;
-        public float y;
-        @Override
-        public String toString() {
-            return x + " " + y;
-        }
-    }
-
-    public class Vec2i {
-        public int x;
-        public int y;
-        @Override
-        public String toString() {
-            return x + " " + y;
-        }
-    }
-
     public Vec3f barycentric(Vec2f A, Vec2f B, Vec2f C, Vec2f P) {
         Vec3f v1 = // tutaj potrzebujemy wektora składającego się ze współrzędnych
                 // x wektorów AB, AC ora PA.
