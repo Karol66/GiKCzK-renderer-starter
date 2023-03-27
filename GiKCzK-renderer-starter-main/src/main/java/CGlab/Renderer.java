@@ -85,12 +85,12 @@ public class Renderer {
 
         Vec3f v2 = new Vec3f((B.y - A.y), (C.y - A.y), (A.y - P.y));
 
-        Vec3f cross = ;// iloczyn wektorowy v1 i v2. Wskazówka: zaimplementuj do tego oddzielną metodę
+        Vec3f cross = vectorProduct(v1, v2);
 
-        Vec2f uv = ;// wektor postaci: cross.x / cross.z, cross.y / cross.z
+        Vec2f uv = new Vec2f(cross.x / cross.z, cross.y / cross.z);
 
-        //
-        Vec3f barycentric = ;// współrzędne barycentryczne, uv.x, uv.y, 1- uv.x - uv.y
+        Vec3f barycentric = new Vec3f(uv.x, uv.y, 1 - uv.x - uv.y);
+
         return barycentric;
     }
 
@@ -98,6 +98,13 @@ public class Renderer {
         // dla każdego punktu obrazu this.render:
         //      oblicz współrzędne baryc.
         //      jeśli punkt leży wewnątrz, zamaluj (patrz wykład)
+    }
+
+    public Vec3f vectorProduct(Vec3f v1, Vec3f v2) {
+        float x = v1.y * v2.z - v1.z * v2.y;
+        float y = v1.z * v2.x - v1.x * v2.z;
+        float z = v1.x * v2.y - v1.y * v2.x;
+        return new Vec3f(x, y, z);
     }
 
 
