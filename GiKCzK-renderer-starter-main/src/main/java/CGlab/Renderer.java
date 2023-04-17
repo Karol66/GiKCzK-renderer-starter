@@ -25,10 +25,10 @@ public class Renderer {
         this.filename = filename;
     }
 
-    public void drawPoint(int x, int y, Color color) {
-        int white = 255 | (255 << 8) | (255 << 16) | (255 << 24);
-        render.setRGB(x, y, white);
-    }
+//    public void drawPoint(int x, int y, Color color) {
+//        int white = 255 | (255 << 8) | (255 << 16) | (255 << 24);
+//        render.setRGB(x, y, white);
+//    }
 
     public void drawLine(int x0, int y0, int x1, int y1, LineAlgo lineAlgo) {
         if (lineAlgo == LineAlgo.NAIVE) drawLineNaive(x0, y0, x1, y1);
@@ -96,7 +96,9 @@ public class Renderer {
         return barycentric;
     }
 
-
+    public void drawPoint(int x, int y,Color color) {
+        render.setRGB(x, y, (255 << 24) + (color.x << 16) + (color.y << 8) + color.z);
+    }
     public void drawTriangle(Vec2f A, Vec2f B, Vec2f C, Color color) {
         Float[] xs = {A.x, B.x, C.x};
         Float[] ys = {A.y, B.y, C.y};

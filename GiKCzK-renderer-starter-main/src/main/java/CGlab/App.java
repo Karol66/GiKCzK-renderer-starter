@@ -25,6 +25,7 @@ public class App {
 
         Renderer mainRenderer = new Renderer(filePath);
         mainRenderer.clear();
+
 //        mainRenderer.drawPoint(width, height);
 //        mainRenderer.drawLineNaive(10, 1,30,90);
         mainRenderer.drawTriangle(new Vec2f(10,40),new Vec2f(10,60),new Vec2f(90,10), new Color(255, 0, 0));
