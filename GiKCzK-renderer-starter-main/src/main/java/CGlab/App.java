@@ -23,18 +23,31 @@ public class App {
         System.out.println(width);
         System.out.println(height);
 
-        Renderer mainRenderer = new Renderer(filePath);
+        RandomColorRenderer mainRenderer = new RandomColorRenderer(filePath, width, height);
         mainRenderer.clear();
 
 //        mainRenderer.drawPoint(width, height);
 //        mainRenderer.drawLineNaive(10, 1,30,90);
-        mainRenderer.drawTriangle(new Vec2f(10,40),new Vec2f(10,60),new Vec2f(90,10), new Color(255, 0, 0));
 
+//        mainRenderer.drawTriangle(new Vec2f(10,40),new Vec2f(10,60),new Vec2f(90,10), new Color(255, 0, 0));
+
+        Model jelen = new Model();
         try {
+            jelen.readOBJ("E:\\Java_Projects\\GiKCzK-renderer-starter-main\\deer-mod.obj");
+            mainRenderer.clear();
+            mainRenderer.render(jelen);
             mainRenderer.save();
-        } catch (IOException ex) {
-            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
+
+
+
+//        try {
+//            mainRenderer.save();
+//        } catch (IOException ex) {
+//            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     public String getVersion() {
